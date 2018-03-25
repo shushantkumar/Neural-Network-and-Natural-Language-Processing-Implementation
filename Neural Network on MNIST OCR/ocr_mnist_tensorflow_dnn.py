@@ -19,7 +19,7 @@ def neural_network_model(data):
 
     #tf.Variable means the weights are tensorflow variable
     #assigning random weights initially  
-    #(input_data * weight) + biases  ---- 
+    #(input_data * weight) + biases  ----
 
     hidden_1_layer = {'weights':tf.Variable(tf.random_normal([784, n_nodes_hl1])),
                       'biases':tf.Variable(tf.random_normal([n_nodes_hl1]))}
@@ -37,12 +37,16 @@ def neural_network_model(data):
     l1 = tf.add(tf.matmul(data,hidden_1_layer['weights']), hidden_1_layer['biases'])
     l1 = tf.nn.relu(l1)     #passing through activation function
 
+    # adding the second layer
+
     l2 = tf.add(tf.matmul(l1,hidden_2_layer['weights']), hidden_2_layer['biases'])
     l2 = tf.nn.relu(l2)
 
+    # adding the third layer
     l3 = tf.add(tf.matmul(l2,hidden_3_layer['weights']), hidden_3_layer['biases'])
     l3 = tf.nn.relu(l3)
 
+    #final layer
     output = tf.matmul(l3,output_layer['weights']) + output_layer['biases']
 
     return output
